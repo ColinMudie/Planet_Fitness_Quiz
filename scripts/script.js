@@ -1,3 +1,4 @@
+
 // Global Variables
 let secondsEl = document.querySelector("#seconds");
 let totalSeconds = 30;
@@ -5,6 +6,10 @@ let secondsElapsed = 0;
 let totalSecondsLeft = 30;
 let currentQuestionNumber = 0;
 let score = 0;
+let allUsers = JSON.parse(localStorage.getItem('all Users'));
+if (allUsers === null) {
+    allUsers = [];
+}
 // Question List w/ Answer
 let question = [{
     number: 1,
@@ -88,10 +93,10 @@ let question = [{
     answer: "B. Taylor"
 }];
 
-let currentUser = {
+let currentUser = [{
     name: "",
     score: ""
-}
+}]
 
 //Shuffle Function (Fisher-Yates Shuffle)
 function shuffle(array) {
@@ -124,7 +129,7 @@ function startTimer() {
                 clearInterval(interval);
                 lastQuestion()
             }
-        }, 100);
+        }, 1000);
     }
 }
 
@@ -152,20 +157,45 @@ function lastQuestion(){
     $(".final-question").removeClass("hide");
 }
 
+// Write Local Storage to Page
+function printLocalStorage() {
+    $('.scoreboard').empty();
+    let savedEntries = JSON.parse(localStorage.getItem("all Users"))
+    if (savedEntries === null) {
+        savedEntries = [];
+    }
+    console.log(allUsers)
+    allUsers.sort((a, b,) => (a.score < b.score) ? 1 : -1)
+    console.log(allUsers);
+    for (let index = 0; index < savedEntries.length; index++) {
+        let scoreList = $(`
+            <li class="scoreboard-list">Name: ${allUsers[index].name} Score: ${allUsers[index].score}</li>
+                `)
+        $('.scoreboard').append(scoreList);
+    } 
+}
+
 function  gameOver(){
     $('.question-list').addClass("hide");
     $('.start-button').addClass("hide");
     $('.final-question').addClass("hide");
-    $(".scoreboard").removeClass("hide");
     totalSeconds = 0;
-    currentUser.score = score
-    console.log(currentUser);
+    currentUser[0].score = score
+    console.log(currentUser[0]);
+    localStorage.setItem("userHighScore", JSON.stringify(currentUser[0]));
+    if (allUsers.includes(currentUser[0]) === false){
+        allUsers.push(currentUser[0]);
+        console.log(allUsers.includes(currentUser[0]))
+    }
+    localStorage.setItem("all Users", JSON.stringify(allUsers));
+    printLocalStorage();
+    $(".scoreboard").removeClass("hide");
 }
 
 $('.start-btn').on("click", function () {
     shuffle(question);
     startTimer();
-    currentUser.name = $('.name').val();
+    currentUser[0].name = $('.name').val();
     $('.start-button').addClass("hide");
     $(".question-list").removeClass("hide");
     renderQuestion(question, currentQuestionNumber);
@@ -206,5 +236,17 @@ $('.final-btn').on("click", function(){
 })
 
 $(".scoreboard-btn").on("click", function(){
-    gameOver();
+    printLocalStorage();
+    $('.question-list').addClass("hide");
+    $('.start-button').addClass("hide");
+    $('.final-question').addClass("hide");
+    $(".scoreboard").removeClass("hide");
+    printLocalStorage();
+})
+
+$(".home-btn").on("click", function(){
+    $('.question-list').addClass("hide");
+    $('.final-question').addClass("hide");
+    $(".scoreboard").addClass("hide");
+    $('.start-button').removeClass("hide");
 })
