@@ -16,8 +16,10 @@ body{
     font-weight: 800;
     font-size: 120%;
 }
+
 .navbar-custom-text:hover{
     color:  #9a55a8;
+    cursor: pointer;
 }
 .bottom-navbar{
     background-color: #b4b2a7;
@@ -53,6 +55,9 @@ body{
     background-color: #9f9f99;
     cursor: pointer;
 }
+.list-answer{
+    background-color: #b4b2a7;
+}
 .hide{
     display: none;
 }
@@ -71,4 +76,9 @@ body{
 }
 #seconds{
     color:whitesmoke;
+}
+.scoreboard{
+    background-color: #b4b2a7;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    border-radius: 10px;
 }

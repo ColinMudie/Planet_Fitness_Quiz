@@ -17,7 +17,7 @@
 <body>
     <!--- Navbar --->
     <nav class="navbar navbar-expand-lg navbar-custom">
-        <a class="navbar-brand navbar-custom-text" href="#">PF MP Quiz</a>
+        <a class="navbar-brand navbar-custom-text">PF MP Quiz</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,8 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link navbar-custom-text" href="#">Scoreboard <span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-link navbar-custom-text scoreboard-btn">Scoreboard</a>
                 </li>
             </ul>
         </div>
@@ -51,9 +50,10 @@
             <div class="card-body center-text">
                 <p>Name: <input class="form-control name" type="text" placeholder="Enter Name Here"></p>
                 <p class="card-text">Click Here to Begin</p>
-                <button type="button" class="btn btn-primary btn-custom">Start!</button>
+                <button type="button" class="btn btn-primary start-btn btn-custom">Start!</button>
             </div>
         </div>
+
         <!--- Question / Answer --->
         <div class="row">
             <div class="card card-custom question-list hide" style="width: 18rem;">
@@ -70,8 +70,41 @@
                 </ul>
             </div>
         </div>
+
+        <!--- Final Question --->
+        <div class="row">
+            <div class="card card-custom final-question hide" style="width: 18rem;">
+                <!-- <img src="" class="card-img-top" alt=""> -->
+                <div class="card-body">
+                    <h5 class="card-title question-number">Final Question</h5>
+                    <p class="card-text question-text">What are the 5 core values of Impact Fitness?</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item list-answer"><input class="form-control value1" type="text"
+                            placeholder="1."></li>
+                    <li class="list-group-item list-answer"><input class="form-control value2" type="text"
+                            placeholder="2."></li>
+                    <li class="list-group-item list-answer"><input class="form-control value3" type="text"
+                            placeholder="3."></li>
+                    <li class="list-group-item list-answer"><input class="form-control value4" type="text"
+                            placeholder="4."></li>
+                    <li class="list-group-item list-answer"><input class="form-control value5" type="text"
+                            placeholder="5."></li>
+                </ul>
+                <button type="button" class="btn btn-primary final-btn btn-custom">Submit</button>
+            </div>
+        </div>
+
     </div>
 
+    <!--- Scoreboard --->
+    <div class="container">
+        <div class="col-md-6">
+            <ul class="scoreboard hide">
+                <li>Name: Score: </li>
+            </ul>
+        </div>
+    </div>
     <!--- Bottom Navbar --->
     <nav class="navbar navbar-light bottom-navbar fixed-bottom">
         <div class="container-fluid">

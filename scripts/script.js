@@ -62,12 +62,12 @@ let question = [{
 },
 {
     number: 7,
-    title: "How many steps are there on a stair master?",
-    a: "10",
-    b: "9",
-    c: "14",
-    d: "8",
-    answer: "D. 8"
+    title: "What brand is our PF Purple Dry Erase Markers?",
+    a: "Expo",
+    b: "Crayola",
+    c: "Volcanics",
+    d: "U Brands",
+    answer: "C. Volcanics"
 },
 {
     number: 8,
@@ -122,14 +122,14 @@ function startTimer() {
             renderTimer();
             if (totalSecondsLeft <= 0) {
                 clearInterval(interval);
-                // Put prompt for core values here.
+                lastQuestion()
             }
-        }, 1000);
+        }, 100);
     }
 }
 
-function addScore(){
-    score = score + 10;
+function addScore(amount){
+    score = score + amount;
     $("#total-score").text("Total Score: " + score);
 }
 
@@ -147,30 +147,64 @@ function renderQuestion(object, index) {
     currentQuestionNumber++;
 }
 
-$('.btn').on("click", function () {
+function lastQuestion(){
+    $('.question-list').addClass("hide");
+    $(".final-question").removeClass("hide");
+}
+
+function  gameOver(){
+    $('.question-list').addClass("hide");
+    $('.start-button').addClass("hide");
+    $('.final-question').addClass("hide");
+    $(".scoreboard").removeClass("hide");
+    totalSeconds = 0;
+    currentUser.score = score
+    console.log(currentUser);
+}
+
+$('.start-btn').on("click", function () {
     shuffle(question);
     startTimer();
     currentUser.name = $('.name').val();
     $('.start-button').addClass("hide");
-    $(".question-list").removeClass("hide")
+    $(".question-list").removeClass("hide");
     renderQuestion(question, currentQuestionNumber);
-
+    console.log(question);
 });
 
 $('.answer').on("click", function () {
     let thisAnswer = $(this).text()
-    // console.log(question);
-    // console.log(thisAnswer);
-    // console.log(thisQuestion);
-    // console.log(question[(currentQuestionNumber - 1)].answer)
     if (thisAnswer === question[(currentQuestionNumber - 1)].answer) {
-        console.log("you got it rite");
-        addScore();
+        addScore(10);
     }
     else {
         totalSeconds = totalSeconds - 5;
     }
+    if (currentQuestionNumber < question.length){
+        console.log("currenQuestionNumber: " + currentQuestionNumber);
+        console.log("question.length: " + question.length);
     renderQuestion(question, currentQuestionNumber);
+    }
+    else {
+        lastQuestion();
+    }
 })
 
+$('.final-btn').on("click", function(){
+    let coreValues = ["Excellence", "Trust", "Passion", "Growth", "Balance"];
+    let value1 = $(".value1").val();
+    let value2 = $(".value2").val();
+    let value3 = $(".value3").val();
+    let value4 = $(".value4").val();
+    let value5 = $(".value5").val();
+    if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5) && totalSecondsLeft > 0){
+        addScore(100);
+    } else if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5)){
+        addScore(50);
+    }
+    gameOver();
+})
 
+$(".scoreboard-btn").on("click", function(){
+    gameOver();
+})
