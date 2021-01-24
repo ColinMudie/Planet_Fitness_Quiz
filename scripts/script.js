@@ -7,6 +7,7 @@ let totalSecondsLeft = 30;
 let currentQuestionNumber = 0;
 let score = 0;
 let allUsers = JSON.parse(localStorage.getItem('all Users'));
+let gameOverCheck = 0
 if (allUsers === null) {
     allUsers = [];
 }
@@ -121,13 +122,18 @@ function renderTimer() {
 
 // timer
 function startTimer() {
+    totalSecondsLeft = 30;
+    totalSeconds = 30;
+    secondsElapsed = 0
     if (totalSecondsLeft > 0) {
         var interval = setInterval(function () {
             secondsElapsed++;
             renderTimer();
             if (totalSecondsLeft <= 0) {
                 clearInterval(interval);
-                lastQuestion()
+                if(gameOverCheck === 0){
+                    lastQuestion();
+                }
             }
         }, 1000);
     }
@@ -153,6 +159,7 @@ function renderQuestion(object, index) {
 }
 
 function lastQuestion(){
+    gameOverCheck++;
     $('.question-list').addClass("hide");
     $(".final-question").removeClass("hide");
 }
@@ -169,7 +176,7 @@ function printLocalStorage() {
     console.log(allUsers);
     for (let index = 0; index < savedEntries.length; index++) {
         let scoreList = $(`
-            <li class="scoreboard-list">Name: ${allUsers[index].name} Score: ${allUsers[index].score}</li>
+            <li class="scoreboard-list"><span style="font-weight:500">${allUsers[index].name + ":     "}</span>${allUsers[index].score}</li>
                 `)
         $('.scoreboard').append(scoreList);
     } 
@@ -194,6 +201,8 @@ function  gameOver(){
 
 $('.start-btn').on("click", function () {
     shuffle(question);
+    $('#seconds').text("Time Left: 30");
+    $("#total-score").text("Total Score: 0");
     startTimer();
     currentUser[0].name = $('.name').val();
     $('.start-button').addClass("hide");
@@ -245,8 +254,9 @@ $(".scoreboard-btn").on("click", function(){
 })
 
 $(".home-btn").on("click", function(){
-    $('.question-list').addClass("hide");
-    $('.final-question').addClass("hide");
-    $(".scoreboard").addClass("hide");
-    $('.start-button').removeClass("hide");
+    // $('.question-list').addClass("hide");
+    // $('.final-question').addClass("hide");
+    // $(".scoreboard").addClass("hide");
+    // $('.start-button').removeClass("hide");
+    location.reload();
 })

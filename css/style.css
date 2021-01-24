@@ -81,4 +81,8 @@ body{
     background-color: #b4b2a7;
     background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
     border-radius: 10px;
+    margin: auto;
+}
+.scoreboard-container{
+    margin: auto;
 }

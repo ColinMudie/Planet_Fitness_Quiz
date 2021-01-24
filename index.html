@@ -18,17 +18,7 @@
     <!--- Navbar --->
     <nav class="navbar navbar-expand-lg navbar-custom">
         <a class="navbar-brand navbar-custom-text home-btn">PF MP Quiz</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link navbar-custom-text scoreboard-btn">Scoreboard</a>
-                </li>
-            </ul>
-        </div>
+        <a class="nav-link navbar-custom-text scoreboard-btn">Scoreboard</a>
     </nav>
     <!-- Timer -->
     <div class="container">
@@ -98,12 +88,12 @@
     </div>
 
     <!--- Scoreboard --->
-    <div class="container">
-        <div class="col-md-6">
-            <ul class="scoreboard hide">
+    <div class="container scoreboard-container">
+        
+            <ul class="card-custom scoreboard hide" style="width: 22rem;">
                 <li>Name: Score: </li>
             </ul>
-        </div>
+        
     </div>
     <!--- Bottom Navbar --->
     <nav class="navbar navbar-light bottom-navbar fixed-bottom">
