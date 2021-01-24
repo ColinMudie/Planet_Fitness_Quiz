@@ -1,6 +1,6 @@
 body{
     background-color: #762b85;
-    background-image: url(http://www.transparenttextures.com/patterns/ice-age.png);
+    background-image: url("http://www.transparenttextures.com/patterns/ice-age.png");
     color: #414142;
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 400;
@@ -40,7 +40,6 @@ body{
 }
 .custom-red{
     color: rgb(137, 44, 63);
-    
 }
 .card-custom{
     margin: auto;
