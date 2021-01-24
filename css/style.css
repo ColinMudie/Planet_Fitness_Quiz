@@ -1,0 +1,56 @@
+body{
+    background-color: #762b85;
+    background-image: url(http://www.transparenttextures.com/patterns/ice-age.png);
+    color: #414142;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 140%;
+}
+.navbar-custom{
+    background-color: #fcd900;
+    background-image: url("https://www.transparenttextures.com/patterns/shattered-dark.png");
+}
+.navbar-custom-text{
+    color: #762b85;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800;
+    font-size: 120%;
+}
+.navbar-custom-text:hover{
+    color:  #9a55a8;
+}
+.bottom-navbar{
+    background-color: #b4b2a7;
+    background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+    text-align: center;
+}
+.container-custom{
+    padding-top: 15%;
+}
+.question-number{
+    font-size: 150%;
+    font-weight: 600;
+}
+.question-text{
+    font-weight: 500;
+}
+.center-text{
+    text-align: center;
+    margin: auto;
+}
+.custom-red{
+    color: rgb(137, 44, 63);
+    
+}
+.card-custom{
+    margin: auto;
+    background-color: #b4b2a7;
+}
+.answer{
+    background-color: #b4b2a7;
+}
+.answer:hover{
+    color: #4b4b55;
+    background-color: #9f9f99;
+    cursor: pointer;
+}
