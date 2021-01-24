@@ -54,3 +54,22 @@ body{
     background-color: #9f9f99;
     cursor: pointer;
 }
+.hide{
+    display: none;
+}
+.btn-custom{
+    background-color: #fcd900;
+    color: #414142;
+    border-color: #fcd900;
+}
+.btn-custom:hover{
+    background-color: #d6bc14;
+    color: #323233;
+    border-color: #d6bc14;
+}
+#total-score{
+    color: whitesmoke;
+}
+#seconds{
+    color:whitesmoke;
+}

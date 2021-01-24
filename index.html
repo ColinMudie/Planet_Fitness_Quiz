@@ -25,30 +25,48 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link navbar-custom-text" href="#">Scoreboard <span class="sr-only">(current)</span></a>
+                    <a class="nav-link navbar-custom-text" href="#">Scoreboard <span
+                            class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
     </nav>
-    <!--- Question / Answer --->
+    <!-- Timer -->
+    <div class="container">
+        <div class="timer white">
+            <div id="seconds">Time Left: 60</div>
+        </div>
+    </div>
+    <!-- Current Score -->
+    <div class="container">
+        <div class="score white">
+            <div id="total-score">Total Score: 0</div>
+        </div>
+    </div>
+
+
     <div class="container container-custom">
+        <!--- Start Button --->
+    <div class="card card-custom start-button" style="width: 14rem;">
+        <div class="card-body center-text">
+            <p class="card-text">Click Here to Begin</p>
+            <button type="button" class="btn btn-primary btn-custom">Start!</button>
+        </div>
+    </div>
+         <!--- Question / Answer --->
         <div class="row">
-            <!-- <div class="col-md-4"></div> -->
-            <!-- <div class="col-md-4"> -->
-                <div class="card card-custom" style="width: 18rem;">
-                    <!-- <img src="" class="card-img-top" alt=""> -->
-                    <div class="card-body">
-                        <h5 class="card-title question-number">Question: number</h5>
-                        <p class="card-text question-text">Here I ask the question?</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item answer answer-1" data="answer1">A: answer1</li>
-                        <li class="list-group-item answer answer-2" data="answer2">B: answer2</li>
-                        <li class="list-group-item answer answer-3" data="answer3">C: answer3</li>
-                        <li class="list-group-item answer answer-4" data="answer4">D: answer4</li>
-                    </ul>
-                    <!-- <div class="col-md-4"></div>
-                </div> -->
+            <div class="card card-custom question-list hide" style="width: 18rem;">
+                <!-- <img src="" class="card-img-top" alt=""> -->
+                <div class="card-body">
+                    <h5 class="card-title question-number">Question: number</h5>
+                    <p class="card-text question-text">Here I ask the question?</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item answer answer-1" data="answer1">A: answer1</li>
+                    <li class="list-group-item answer answer-2" data="answer2">B: answer2</li>
+                    <li class="list-group-item answer answer-3" data="answer3">C: answer3</li>
+                    <li class="list-group-item answer answer-4" data="answer4">D: answer4</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -56,10 +74,10 @@
     <!--- Bottom Navbar --->
     <nav class="navbar navbar-light bottom-navbar fixed-bottom">
         <div class="container-fluid">
-        <span class="navbar-text center-text">
-            Made With <i class="fas fa-heart custom-red"></i> By Colin
-        </span>
-    </div>
+            <span class="navbar-text center-text">
+                Made With <i class="fas fa-heart custom-red"></i> By Colin
+            </span>
+        </div>
     </nav>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
