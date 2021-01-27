@@ -11,6 +11,7 @@ let gameOverCheck = 0
 if (allUsers === null) {
     allUsers = [];
 }
+
 // Question List w/ Answer
 let question = [{
     number: 1,
@@ -366,3 +367,12 @@ $(".okay-btn").on("click", function (){
     $(".rules-text").addClass("hide");
     $(".start-button").removeClass("hide");
 })
+
+$('.name').keypress(function (e) {
+    var key = e.which;
+    if(key == 13)  // the enter key code
+     {
+       $('.start-btn').click();
+       return false;  
+     }
+   }); 
