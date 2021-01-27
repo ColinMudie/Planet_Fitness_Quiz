@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 
 <head>
     <meta charset="UTF-8">
@@ -23,7 +23,7 @@
     <!-- Timer -->
     <div class="container">
         <div class="timer white">
-            <div id="seconds">Time Left: 30</div>
+            <div id="seconds">Time Left: 120</div>
         </div>
     </div>
     <!-- Current Score -->
@@ -35,10 +35,21 @@
 
 
     <div class="container container-custom">
-        <!--- Start Button --->
-        <div class="card card-custom start-button" style="width: 14rem;">
+        <!--- Rules --->
+        <div class="card card-custom rules-text" style="width: 30rem;">
             <div class="card-body center-text">
-                <p>Name: <input class="form-control name" type="text" placeholder="Enter Name Here"></p>
+                <h4>Rules:</h4>
+                <p class="card-text">There are 20 question with an additional final question at the end.</p>
+                <p class="card-text">Each correction question is worth 10 points, final question is worth 50 (if you manage to answer the final question with time remaining it will be worth 100 points) </p>
+                <p class="card-text">You will be given 2 minutes to complete this quiz.</p>
+                <p class="card-text">But be careful, Answering a question wrong will take away 5 seconds from your time.</p>
+                <button type="button" class="btn btn-primary okay-btn btn-custom">Okay</button>
+            </div>
+        </div>
+        <!--- Start Button --->
+        <div class="card card-custom start-button hide" style="width: 14rem;">
+            <div class="card-body center-text">
+                <h4>Name: <input class="form-control name" type="text" placeholder="Enter Name Here"></h4>
                 <p class="card-text">Click Here to Begin</p>
                 <button type="button" class="btn btn-primary start-btn btn-custom">Start!</button>
             </div>
@@ -66,8 +77,8 @@
             <div class="card card-custom final-question hide" style="width: 18rem;">
                 <!-- <img src="" class="card-img-top" alt=""> -->
                 <div class="card-body">
-                    <h5 class="card-title question-number">Final Question</h5>
-                    <p class="card-text question-text">What are the 5 core values of Impact Fitness?</p>
+                    <h5 class="card-title">Final Question</h5>
+                    <p class="card-text">What are the 5 core values of Impact Fitness?</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item list-answer"><input class="form-control value1" type="text"

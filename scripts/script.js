@@ -1,9 +1,9 @@
 
 // Global Variables
 let secondsEl = document.querySelector("#seconds");
-let totalSeconds = 30;
+let totalSeconds = 120;
 let secondsElapsed = 0;
-let totalSecondsLeft = 30;
+let totalSecondsLeft = 120;
 let currentQuestionNumber = 0;
 let score = 0;
 let allUsers = JSON.parse(localStorage.getItem('all Users'));
@@ -92,6 +92,105 @@ let question = [{
     c: "Will",
     d: "Brad",
     answer: "B. Taylor"
+},
+{
+    number: 10,
+    title: "What is the other name for the Total Body Enhancement?",
+    a: "Life Amplification",
+    b: "Pink Light Augmenter",
+    c: "Beauty Angel",
+    d: "Not Beauty Angel",
+    answer: "C. Beauty Angel"
+},
+{
+    number: 11,
+    title: "Which Country is there currently NOT a planet fitness in?",
+    a: "Domican Republic",
+    b: "Canada",
+    c: "Panama",
+    d: "Costa Rica",
+    answer: "D. Costa Rica"
+},
+{
+    number: 12,
+    title: "When transferring a member, Which of the following do you NOT require to complete a transfer",
+    a: "Name",
+    b: "Zip Code",
+    c: "Keytag Number",
+    d: "Email Address",
+    answer: "A. Name"
+},
+{
+    number: 13,
+    title: "On what day of the month is a members overdue balances swept into the club account?",
+    a: "Tuesday",
+    b: "3rd",
+    c: "26th",
+    d: "11th",
+    answer: "D. 11th"
+},
+{
+    number: 14,
+    title: "What is the address for our Gym here in Mount Pleasant?",
+    a: "2135 S. Mission St.",
+    b: "2315 S. Mission St.",
+    c: "3512 N. Mission St.",
+    d: "2153 N. Mission St.",
+    answer: "A. 2135 S. Mission St."
+},
+{
+    number: 15,
+    title: "Black Card Members can recieve 20% off from this brands online store?",
+    a: "Nike",
+    b: "Reebok",
+    c: "Skechers",
+    d: "New Balance",
+    answer: "B. Reebok"
+},
+{
+    number: 16,
+    title: "How many purple bars make up the crowd meter?",
+    a: "25",
+    b: "18",
+    c: "20",
+    d: "22",
+    answer: "C. 20"
+},
+{
+    number: 17,
+    title: "Which of the following are NOT required to sign up for a free day pass online?",
+    a: "Name",
+    b: "Email",
+    c: "Date of Birth",
+    d: "Phone Number",
+    answer: "D. Phone Number"
+},
+{
+    number: 18,
+    title: "How Many PFs are there currently in the Upper Peninsula of Michigan?",
+    a: "2",
+    b: "1",
+    c: "0",
+    d: "3",
+    answer: "C. 0"
+},
+{
+    number: 19,
+    title: "What is the name of the white used by all PFs?",
+    a: "Radiant White",
+    b: "Titanium White",
+    c: "Zinc White",
+    d: "Flake White",
+    answer: "B. Titanium White"
+},
+{
+    number: 20,
+    title: "Excluding the one in the back back, how many fire extinguishers are at our PF?",
+    a: "4",
+    b: "6",
+    c: "3",
+    d: "2",
+    answer: "A. 4"
 }];
 
 let currentUser = [{
@@ -101,7 +200,7 @@ let currentUser = [{
 
 //Shuffle Function (Fisher-Yates Shuffle)
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
         // Pick a remaining element...
@@ -122,11 +221,11 @@ function renderTimer() {
 
 // timer
 function startTimer() {
-    totalSecondsLeft = 30;
-    totalSeconds = 30;
+    totalSecondsLeft = 120;
+    totalSeconds = 120;
     secondsElapsed = 0
     if (totalSecondsLeft > 0) {
-        var interval = setInterval(function () {
+        let interval = setInterval(function () {
             secondsElapsed++;
             renderTimer();
             if (totalSecondsLeft <= 0) {
@@ -162,6 +261,7 @@ function lastQuestion(){
     gameOverCheck++;
     $('.question-list').addClass("hide");
     $(".final-question").removeClass("hide");
+
 }
 
 // Write Local Storage to Page
@@ -187,6 +287,7 @@ function  gameOver(){
     $('.start-button').addClass("hide");
     $('.final-question').addClass("hide");
     totalSeconds = 0;
+    $('#seconds').text("Time Left: 0");
     currentUser[0].score = score
     console.log(currentUser[0]);
     localStorage.setItem("userHighScore", JSON.stringify(currentUser[0]));
@@ -200,28 +301,31 @@ function  gameOver(){
 }
 
 $('.start-btn').on("click", function () {
+    currentUser[0].name = $('.name').val();
+    if (currentUser[0].name === "") {
+        alert("let's try entering a name in the input first.")
+    } else {
     shuffle(question);
     $('#seconds').text("Time Left: 30");
     $("#total-score").text("Total Score: 0");
     startTimer();
-    currentUser[0].name = $('.name').val();
     $('.start-button').addClass("hide");
     $(".question-list").removeClass("hide");
     renderQuestion(question, currentQuestionNumber);
     console.log(question);
+    }
 });
 
 $('.answer').on("click", function () {
     let thisAnswer = $(this).text()
     if (thisAnswer === question[(currentQuestionNumber - 1)].answer) {
         addScore(10);
+        console.log("Correct");
     }
     else {
         totalSeconds = totalSeconds - 5;
     }
     if (currentQuestionNumber < question.length){
-        console.log("currenQuestionNumber: " + currentQuestionNumber);
-        console.log("question.length: " + question.length);
     renderQuestion(question, currentQuestionNumber);
     }
     else {
@@ -249,14 +353,16 @@ $(".scoreboard-btn").on("click", function(){
     $('.question-list').addClass("hide");
     $('.start-button').addClass("hide");
     $('.final-question').addClass("hide");
+    $('.rules-text').addClass("hide");
     $(".scoreboard").removeClass("hide");
     printLocalStorage();
 })
 
 $(".home-btn").on("click", function(){
-    // $('.question-list').addClass("hide");
-    // $('.final-question').addClass("hide");
-    // $(".scoreboard").addClass("hide");
-    // $('.start-button').removeClass("hide");
     location.reload();
+})
+
+$(".okay-btn").on("click", function (){
+    $(".rules-text").addClass("hide");
+    $(".start-button").removeClass("hide");
 })

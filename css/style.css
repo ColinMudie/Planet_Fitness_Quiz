@@ -27,7 +27,7 @@ body{
     text-align: center;
 }
 .container-custom{
-    padding-top: 15%;
+    padding-top: 0%;
 }
 .question-number{
     font-size: 150%;
@@ -70,6 +70,10 @@ body{
     background-color: #d6bc14;
     color: #323233;
     border-color: #d6bc14;
+}
+.btn-primary:active
+{
+    background-color:grey 
 }
 #total-score{
     color: whitesmoke;
