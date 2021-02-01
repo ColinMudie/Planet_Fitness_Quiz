@@ -88,5 +88,18 @@ body{
     margin: auto;
 }
 .scoreboard-container{
+    padding-top: 2%;
     margin: auto;
+}
+.correct{
+    background-color: rgba(37, 125, 37, 0.5);
+}
+.correct:hover{
+    background-color: rgba(37, 125, 37, 0.5);
+}
+.incorrect{
+    background-color: rgba(147, 13, 13, 0.389);
+}
+.incorrect:hover{
+    background-color:rgba(147, 13, 13, 0.389);
 }

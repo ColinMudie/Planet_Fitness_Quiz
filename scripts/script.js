@@ -51,7 +51,7 @@ let question = [{
 },
 {
     number: 5,
-    title: "How many purell sanitizer pumps are there at Mt. P. PF?",
+    title: "How many purell sanitizer stations are there at Mt. P. PF?",
     a: "10",
     b: "12",
     c: "9",
@@ -231,7 +231,7 @@ function startTimer() {
             renderTimer();
             if (totalSecondsLeft <= 0) {
                 clearInterval(interval);
-                if(gameOverCheck === 0){
+                if (gameOverCheck === 0) {
                     lastQuestion();
                 }
             }
@@ -239,7 +239,7 @@ function startTimer() {
     }
 }
 
-function addScore(amount){
+function addScore(amount) {
     score = score + amount;
     $("#total-score").text("Total Score: " + score);
 }
@@ -258,7 +258,7 @@ function renderQuestion(object, index) {
     currentQuestionNumber++;
 }
 
-function lastQuestion(){
+function lastQuestion() {
     gameOverCheck++;
     $('.question-list').addClass("hide");
     $(".final-question").removeClass("hide");
@@ -280,19 +280,21 @@ function printLocalStorage() {
             <li class="scoreboard-list"><span style="font-weight:500">${allUsers[index].name + ":     "}</span>${allUsers[index].score}</li>
                 `)
         $('.scoreboard').append(scoreList);
-    } 
+    }
 }
 
-function  gameOver(){
+function gameOver() {
     $('.question-list').addClass("hide");
     $('.start-button').addClass("hide");
     $('.final-question').addClass("hide");
+    $("#total-score").addClass("hide");
+    $("#seconds").addClass("hide");
     totalSeconds = 0;
     $('#seconds').text("Time Left: 0");
     currentUser[0].score = score
     console.log(currentUser[0]);
     localStorage.setItem("userHighScore", JSON.stringify(currentUser[0]));
-    if (allUsers.includes(currentUser[0]) === false){
+    if (allUsers.includes(currentUser[0]) === false) {
         allUsers.push(currentUser[0]);
         console.log(allUsers.includes(currentUser[0]))
     }
@@ -301,19 +303,44 @@ function  gameOver(){
     $(".scoreboard").removeClass("hide");
 }
 
+function accuracy (input1, last){
+    let answerValidationTime = 4;
+    let answerSecondsElapsed = 0;
+    let answerTotalTime = 4;
+    if (answerValidationTime > 0) {
+        let interval = setInterval(function () {
+            answerSecondsElapsed++;
+            answerValidationTime = answerTotalTime - answerSecondsElapsed;
+            if (answerValidationTime <= 0) {
+                input1.removeClass("correct");
+                input1.removeClass("incorrect");
+                if (currentQuestionNumber < question.length) {
+                    renderQuestion(question, currentQuestionNumber);
+                }
+                else {
+                    last();
+                }
+                clearInterval(interval);
+            }
+        }, 100);
+    }
+}
+
+
+
 $('.start-btn').on("click", function () {
     currentUser[0].name = $('.name').val();
     if (currentUser[0].name === "") {
         alert("let's try entering a name in the input first.")
     } else {
-    shuffle(question);
-    $('#seconds').text("Time Left: 30");
-    $("#total-score").text("Total Score: 0");
-    startTimer();
-    $('.start-button').addClass("hide");
-    $(".question-list").removeClass("hide");
-    renderQuestion(question, currentQuestionNumber);
-    console.log(question);
+        shuffle(question);
+        $('#seconds').text("Time Left: 30");
+        $("#total-score").text("Total Score: 0");
+        startTimer();
+        $('.start-button').addClass("hide");
+        $(".question-list").removeClass("hide");
+        renderQuestion(question, currentQuestionNumber);
+        console.log(question);
     }
 });
 
@@ -321,58 +348,66 @@ $('.answer').on("click", function () {
     let thisAnswer = $(this).text()
     if (thisAnswer === question[(currentQuestionNumber - 1)].answer) {
         addScore(10);
-        console.log("Correct");
+        $(this).addClass('correct');
+        accuracy($(this), lastQuestion);
     }
     else {
+        $(this).addClass('incorrect');
         totalSeconds = totalSeconds - 5;
-    }
-    if (currentQuestionNumber < question.length){
-    renderQuestion(question, currentQuestionNumber);
-    }
-    else {
-        lastQuestion();
+        accuracy($(this), lastQuestion);
     }
 })
 
-$('.final-btn').on("click", function(){
+$('.final-btn').on("click", function () {
     let coreValues = ["Excellence", "Trust", "Passion", "Growth", "Balance"];
     let value1 = $(".value1").val();
     let value2 = $(".value2").val();
     let value3 = $(".value3").val();
     let value4 = $(".value4").val();
     let value5 = $(".value5").val();
-    if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5) && totalSecondsLeft > 0){
+
+    (coreValues.includes(value1)) ? $('.value1').addClass('correct') : $('.value1').addClass('incorrect');
+    (coreValues.includes(value2)) ? $('.value2').addClass('correct') : $('.value2').addClass('incorrect');
+    (coreValues.includes(value3)) ? $('.value3').addClass('correct') : $('.value3').addClass('incorrect');
+    (coreValues.includes(value4)) ? $('.value4').addClass('correct') : $('.value4').addClass('incorrect');
+    (coreValues.includes(value5)) ? $('.value5').addClass('correct') : $('.value5').addClass('incorrect');
+
+
+    if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5) && totalSecondsLeft > 0) {
         addScore(100);
-    } else if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5)){
+    } else if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5)) {
         addScore(50);
     }
-    gameOver();
+    accuracy($('.form-control'), gameOver);
 })
 
-$(".scoreboard-btn").on("click", function(){
+$(".scoreboard-btn").on("click", function () {
     printLocalStorage();
     $('.question-list').addClass("hide");
     $('.start-button').addClass("hide");
     $('.final-question').addClass("hide");
     $('.rules-text').addClass("hide");
     $(".scoreboard").removeClass("hide");
+    $("#total-score").addClass("hide");
+    $("#seconds").addClass("hide");
     printLocalStorage();
 })
 
-$(".home-btn").on("click", function(){
+$(".home-btn").on("click", function () {
     location.reload();
 })
 
-$(".okay-btn").on("click", function (){
+$(".okay-btn").on("click", function () {
     $(".rules-text").addClass("hide");
     $(".start-button").removeClass("hide");
 })
 
 $('.name').keypress(function (e) {
     var key = e.which;
-    if(key == 13)  // the enter key code
-     {
-       $('.start-btn').click();
-       return false;  
-     }
-   }); 
+    if (key == 13)  // the enter key code
+    {
+        console.log("good");
+        $('.start-btn').click();
+        return false;
+    }
+}); 
