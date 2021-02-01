@@ -4,7 +4,11 @@
 
 This is a fun timed quiz for the member service representatives of Planet Fitness Mount Pleasant to take and perhaps learn things about their club they never knew about. Some of these questions may be easy, many of them will be things you never thought about as a MSR.
 
-There are 20 questions each worth 10 points when answered correctly, with a final question worth 50. The quiz also features a time which counts down from 120 seconds when the quiz begins. Answering a question incorrectly will reduce the time remaining by 5 seconds for each incorrect answer. If the user manages to answer the final question correctly with time remaining on the timer, they will be given 100 points instead of 50. 300 points is the current possible high score.
+There are 25 questions each worth 10 points when answered correctly, with a final question worth 50. The quiz also features a time which counts down from 120 seconds when the quiz begins. Answering a question incorrectly will reduce the time remaining by 5 seconds for each incorrect answer. If the user manages to answer the final question correctly with time remaining on the timer, they will be given 100 points instead of 50. 300 points is the current possible high score.
+
+The quiz utilizes 2 interval timers, 
+- The 1st is the countdown for the time remaining.
+- The 2nd is used to temporarily display whether the answer selected was correct or incorrect.
 
 The Quiz also features the use of local storage to save different users attempts onto the same computer to be viewed later on the scoredboard. The scoreboard will sort the highest score to the top.
 
