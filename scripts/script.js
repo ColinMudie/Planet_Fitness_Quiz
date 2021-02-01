@@ -33,12 +33,12 @@ let question = [{
 },
 {
     number: 3,
-    title: "We all know the normal code to all our doors, what is the other code you can use?",
-    a: "2014",
-    b: "1092",
-    c: "2008",
-    d: "1234",
-    answer: "A. 2014"
+    title: "Which of the following is NOT an exclusive travel perk offered to our Black Card Members?",
+    a: "200$ credit, to be used for food and lodging",
+    b: "60% off hotel rates",
+    c: "deals on airline tickets and car rentals",
+    d: "low priced, weeklong vacations at resorts worldwide",
+    answer: "A. 200$ credit, to be used for food and lodging"
 },
 {
     number: 4,
@@ -192,7 +192,53 @@ let question = [{
     c: "3",
     d: "2",
     answer: "A. 4"
-}];
+},
+{
+    number: 21,
+    title: "When was Planet Fitness Founded?",
+    a: "1992",
+    b: "1995",
+    c: "1993",
+    d: "1998",
+    answer: "A. 1992"
+},
+{
+    number: 22,
+    title: "What is the 1st song on the album \"NOW That's What I Call A Workout 2020\"?",
+    a: "\"Blinding Lights\", by The Weeknd",
+    b: "\"ily (i love you baby)\"[feat. Emilee][ARTY Remix]",
+    c: '"Bang!", by AJR',
+    d: "\"Heart On My Sleeve\", by GATTUSO & Laidback Luke [feat. Sarah Reeves]",
+    answer: 'C. "Bang!", by AJR'
+},
+{
+    number: 23,
+    title: "Who is the CEO of Planet Fitness?",
+    a: "Brad Falls",
+    b: "Chuck Runyon",
+    c: "Michael Grondahl",
+    d: "Chris Rondeau",
+    answer: "D. Chris Rondeau"
+},
+{
+    number: 24,
+    title: "Who is the nascar driver that is sponsered by PF?",
+    a: "Joey Logano",
+    b: "Ryan Blaney",
+    c: "Corey Lajoie",
+    d: "Daniel Suarez",
+    answer: "A. Joey Logano"
+},
+{
+    number: 25,
+    title: 'Who is the trainer (that appeared on "The Biggest Loser") that customers can workout alongside on the PF app?',
+    a: "Kim Lyons",
+    b: "Jillian Michaels",
+    c: "Erica Lugo",
+    d: "Steve Cook",
+    answer: "C. Erica Lugo"
+},
+];
 
 let currentUser = [{
     name: "",
@@ -334,7 +380,7 @@ $('.start-btn').on("click", function () {
         alert("let's try entering a name in the input first.")
     } else {
         shuffle(question);
-        $('#seconds').text("Time Left: 30");
+        $('#seconds').text("Time Left: 120");
         $("#total-score").text("Total Score: 0");
         startTimer();
         $('.start-button').addClass("hide");
