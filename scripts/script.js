@@ -414,23 +414,23 @@ $('.answer').on("click", function () {
 })
 
 $('.final-btn').on("click", function () {
-    let coreValues = ["Excellence", "Trust", "Passion", "Growth", "Balance"];
+    let coreValues = ["excellence", "trust", "passion", "growth", "balance"];
     let value1 = $(".value1").val();
     let value2 = $(".value2").val();
     let value3 = $(".value3").val();
     let value4 = $(".value4").val();
     let value5 = $(".value5").val();
 
-    (coreValues.includes(value1)) ? $('.value1').addClass('correct') : $('.value1').addClass('incorrect');
-    (coreValues.includes(value2)) ? $('.value2').addClass('correct') : $('.value2').addClass('incorrect');
-    (coreValues.includes(value3)) ? $('.value3').addClass('correct') : $('.value3').addClass('incorrect');
-    (coreValues.includes(value4)) ? $('.value4').addClass('correct') : $('.value4').addClass('incorrect');
-    (coreValues.includes(value5)) ? $('.value5').addClass('correct') : $('.value5').addClass('incorrect');
+    (coreValues.includes(value1.toLowerCase())) ? $('.value1').addClass('correct') : $('.value1').addClass('incorrect');
+    (coreValues.includes(value2.toLowerCase())) ? $('.value2').addClass('correct') : $('.value2').addClass('incorrect');
+    (coreValues.includes(value3.toLowerCase())) ? $('.value3').addClass('correct') : $('.value3').addClass('incorrect');
+    (coreValues.includes(value4.toLowerCase())) ? $('.value4').addClass('correct') : $('.value4').addClass('incorrect');
+    (coreValues.includes(value5.toLowerCase())) ? $('.value5').addClass('correct') : $('.value5').addClass('incorrect');
 
     if (count === 0){
-        if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5) && totalSecondsLeft > 0) {
+        if (coreValues.includes(value1.toLowerCase()) && coreValues.includes(value2.toLowerCase()) && coreValues.includes(value3.toLowerCase()) && coreValues.includes(value4.toLowerCase()) && coreValues.includes(value5.toLowerCase()) && totalSecondsLeft > 0) {
             addScore(100);
-        } else if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5)) {
+        } else if (coreValues.includes(value1.toLowerCase()) && coreValues.includes(value2.toLowerCase()) && coreValues.includes(value3.toLowerCase()) && coreValues.includes(value4.toLowerCase()) && coreValues.includes(value5.toLowerCase())) {
             addScore(50);
         }
         accuracy($('.form-control'), gameOver);
