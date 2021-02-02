@@ -63,10 +63,10 @@ let question = [{
     number: 6,
     title: "Excluding the hidden one in the back-back, How many TVs are there?",
     a: "10",
-    b: "18",
+    b: "19",
     c: "14",
-    d: "17",
-    answer: "D. 17"
+    d: "18",
+    answer: "D. 18"
 },
 {
     number: 7,
@@ -433,8 +433,8 @@ $('.final-btn').on("click", function () {
         } else if (coreValues.includes(value1.toLowerCase()) && coreValues.includes(value2.toLowerCase()) && coreValues.includes(value3.toLowerCase()) && coreValues.includes(value4.toLowerCase()) && coreValues.includes(value5.toLowerCase())) {
             addScore(50);
         }
-        accuracy($('.form-control'), gameOver);
         count++;
+        accuracy($('.form-control'), gameOver);
     }
 })
 
