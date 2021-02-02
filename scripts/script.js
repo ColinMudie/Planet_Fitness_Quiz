@@ -433,9 +433,9 @@ $('.final-btn').on("click", function () {
         } else if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5)) {
             addScore(50);
         }
+        accuracy($('.form-control'), gameOver);
         count++;
     }
-    accuracy($('.form-control'), gameOver);
 })
 
 $(".scoreboard-btn").on("click", function () {
