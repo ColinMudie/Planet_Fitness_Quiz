@@ -434,8 +434,8 @@ $('.final-btn').on("click", function () {
             addScore(50);
         }
         count++;
-        accuracy($('.form-control'), gameOver);
     }
+    accuracy($('.form-control'), gameOver);
 })
 
 $(".scoreboard-btn").on("click", function () {
