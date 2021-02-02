@@ -287,7 +287,9 @@ function startTimer() {
 }
 
 function addScore(amount) {
-    score = score + amount;
+    if (count === 0){
+        score = score + amount;
+    }
     $("#total-score").text("Total Score: " + score);
 }
 
