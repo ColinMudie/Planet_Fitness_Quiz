@@ -8,6 +8,7 @@ let currentQuestionNumber = 0;
 let score = 0;
 let allUsers = JSON.parse(localStorage.getItem('all Users'));
 let gameOverCheck = 0
+let count = 0;
 if (allUsers === null) {
     allUsers = [];
 }
@@ -302,9 +303,11 @@ function renderQuestion(object, index) {
     $(".answer-4").text("D. " + object[index].d);
     $(".answer-4").attr("question-no", object[index].number);
     currentQuestionNumber++;
+    count = 0;
 }
 
 function lastQuestion() {
+    count = 0;
     gameOverCheck++;
     $('.question-list').addClass("hide");
     $(".final-question").removeClass("hide");
@@ -392,15 +395,19 @@ $('.start-btn').on("click", function () {
 
 $('.answer').on("click", function () {
     let thisAnswer = $(this).text()
-    if (thisAnswer === question[(currentQuestionNumber - 1)].answer) {
-        addScore(10);
-        $(this).addClass('correct');
-        accuracy($(this), lastQuestion);
-    }
-    else {
-        $(this).addClass('incorrect');
-        totalSeconds = totalSeconds - 5;
-        accuracy($(this), lastQuestion);
+    if (count === 0){
+        if (thisAnswer === question[(currentQuestionNumber - 1)].answer) {
+            addScore(10);
+            $(this).addClass('correct');
+            accuracy($(this), lastQuestion);
+            count++;
+        }
+        else {
+            $(this).addClass('incorrect');
+            totalSeconds = totalSeconds - 5;
+            accuracy($(this), lastQuestion);
+            count++;
+        }
     }
 })
 
@@ -418,13 +425,15 @@ $('.final-btn').on("click", function () {
     (coreValues.includes(value4)) ? $('.value4').addClass('correct') : $('.value4').addClass('incorrect');
     (coreValues.includes(value5)) ? $('.value5').addClass('correct') : $('.value5').addClass('incorrect');
 
-
-    if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5) && totalSecondsLeft > 0) {
-        addScore(100);
-    } else if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5)) {
-        addScore(50);
+    if (count === 0){
+        if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5) && totalSecondsLeft > 0) {
+            addScore(100);
+        } else if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5)) {
+            addScore(50);
+        }
+        count++;
+        accuracy($('.form-control'), gameOver);
     }
-    accuracy($('.form-control'), gameOver);
 })
 
 $(".scoreboard-btn").on("click", function () {
