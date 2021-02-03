@@ -377,7 +377,12 @@ function accuracy (input1, last){
     }
 }
 
-
+// removes indivual index from local storage.
+function deleteLocal(index, qty){
+    allUsers.splice(index, qty)
+    localStorage.setItem("all Users", JSON.stringify(allUsers));
+    printLocalStorage();
+}
 
 $('.start-btn').on("click", function () {
     currentUser[0].name = $('.name').val();
@@ -415,22 +420,22 @@ $('.answer').on("click", function () {
 
 $('.final-btn').on("click", function () {
     let coreValues = ["excellence", "trust", "passion", "growth", "balance"];
-    let value1 = $(".value1").val();
-    let value2 = $(".value2").val();
-    let value3 = $(".value3").val();
-    let value4 = $(".value4").val();
-    let value5 = $(".value5").val();
+    let value1 = ($(".value1").val()).toLowerCase();
+    let value2 = ($(".value2").val()).toLowerCase();
+    let value3 = ($(".value3").val()).toLowerCase();
+    let value4 = ($(".value4").val()).toLowerCase();
+    let value5 = ($(".value5").val()).toLowerCase();
 
-    (coreValues.includes(value1.toLowerCase())) ? $('.value1').addClass('correct') : $('.value1').addClass('incorrect');
-    (coreValues.includes(value2.toLowerCase())) ? $('.value2').addClass('correct') : $('.value2').addClass('incorrect');
-    (coreValues.includes(value3.toLowerCase())) ? $('.value3').addClass('correct') : $('.value3').addClass('incorrect');
-    (coreValues.includes(value4.toLowerCase())) ? $('.value4').addClass('correct') : $('.value4').addClass('incorrect');
-    (coreValues.includes(value5.toLowerCase())) ? $('.value5').addClass('correct') : $('.value5').addClass('incorrect');
+    (coreValues.includes) ? $('.value1').addClass('correct') : $('.value1').addClass('incorrect');
+    (coreValues.includes) ? $('.value2').addClass('correct') : $('.value2').addClass('incorrect');
+    (coreValues.includes) ? $('.value3').addClass('correct') : $('.value3').addClass('incorrect');
+    (coreValues.includes) ? $('.value4').addClass('correct') : $('.value4').addClass('incorrect');
+    (coreValues.includes) ? $('.value5').addClass('correct') : $('.value5').addClass('incorrect');
 
     if (count === 0){
-        if (coreValues.includes(value1.toLowerCase()) && coreValues.includes(value2.toLowerCase()) && coreValues.includes(value3.toLowerCase()) && coreValues.includes(value4.toLowerCase()) && coreValues.includes(value5.toLowerCase()) && totalSecondsLeft > 0) {
+        if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5) && totalSecondsLeft > 0) {
             addScore(100);
-        } else if (coreValues.includes(value1.toLowerCase()) && coreValues.includes(value2.toLowerCase()) && coreValues.includes(value3.toLowerCase()) && coreValues.includes(value4.toLowerCase()) && coreValues.includes(value5.toLowerCase())) {
+        } else if (coreValues.includes(value1) && coreValues.includes(value2) && coreValues.includes(value3) && coreValues.includes(value4) && coreValues.includes(value5)) {
             addScore(50);
         }
         count++;
